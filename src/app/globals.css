@@ -3,25 +3,49 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground: #1a1c1d;
+  --background-start-rgb: #D6DBDC;
+  --background-end: #DFE0DF;
+  --primary: #FDBA74;
+  --secondary: #00B0A6;
+  --tertiary: #AB7BE7;
+  --dark: #1a1c1d;
+  --medium: #424646;
+  --light: #cecece;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground: #DFE0DF;
+    --background-start: #424646;
+    --background-end: #1a1c1d;
+    --primary: #FDBA74;
+    --secondary: #00B0A6;
+    --tertiary: #AB7BE7;
+    --dark: #cecece;
+    --medium: #424646;
+    --light: #1a1c1d;
   }
 }
 
+:root .dark {
+  --foreground: #DFE0DF;
+  --background-start: #424646;
+  --background-end: #1a1c1d;
+  --primary: #FDBA74;
+  --secondary: #00B0A6;
+  --tertiary: #AB7BE7;
+  --dark: #cecece;
+  --medium: #424646;
+  --light: #1a1c1d;
+}
+
 body {
-  color: rgb(var(--foreground-rgb));
+  color: var(--foreground);
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      var(--background-end)
     )
-    rgb(var(--background-start-rgb));
+    var(--background-start);
 }
