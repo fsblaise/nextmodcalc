@@ -18,10 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen`}>
+      <body className={`${inter.className}`}>
         <Providers>
-          <Header></Header>
-          {children}
+          <div className='min-h-screen flex flex-wrap flex-col'>
+            <Header></Header>
+            {children}
+          </div>
         </Providers>
       </body>
     </html>

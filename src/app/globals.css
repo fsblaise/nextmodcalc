@@ -4,7 +4,7 @@
 
 :root {
   --foreground: #1a1c1d;
-  --background-start-rgb: #D6DBDC;
+  --background-start: #ffffff;
   --background-end: #DFE0DF;
   --primary: #FDBA74;
   --secondary: #00B0A6;
@@ -48,4 +48,9 @@ body {
       var(--background-end)
     )
     var(--background-start);
+
+}
+
+#__next {
+  @apply flex flex-col min-h-full;
 }

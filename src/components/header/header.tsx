@@ -7,15 +7,15 @@ import {
 import { Link } from "@nextui-org/link";
 import NextLink from "next/link";
 import { Button } from "@nextui-org/button";
-import React from "react";
-import { Switch } from "@nextui-org/switch";
-import {Moon} from '../../../public/moon'
-import {Sun} from '../../../public/sun'
-import Image from "next/image";
+import React, { useState } from "react";
+import DarkSwitch from "../darkSwitch/darkSwitch";
+import { Moon } from "../../../public/moon";
+import { Sun } from "../../../public/sun";
 
 const Header = () => {
+
   return (
-    <Navbar className="w-full border-b-1 border-[var(--light)]">
+    <Navbar className="w-full border-b-1 bg-transparent" isBordered>
       <NavbarBrand>
         <Link color="foreground" href="/" as={NextLink} className="text-2xl">
           <span className="text-[var(--secondary)]">N</span>
@@ -31,10 +31,10 @@ const Header = () => {
           <Link
             color="foreground"
             className="hover:text-[var(--primary)]"
-            href=""
+            href="/mekanism"
             as={NextLink}
           >
-            Page 2
+            Mekanism
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
@@ -50,17 +50,7 @@ const Header = () => {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <Switch
-          defaultSelected
-          size="lg"
-          color="success"
-          startContent={<Sun />}
-          endContent={<Moon />}
-        >
-          Dark mode
-        </Switch>
-      </NavbarContent>
-      <NavbarContent justify="end">
+        <DarkSwitch start={<Sun />} end={<Moon />} />
         <NavbarItem className="hidden lg:flex">
           <Link
             color="foreground"
@@ -77,7 +67,7 @@ const Header = () => {
             color="secondary"
             href="/register"
             variant="flat"
-            className="hover:opacity-80"
+            className="hover:text-[var(--primary)]"
           >
             Sign Up
           </Button>
