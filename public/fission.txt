@@ -1,0 +1,49 @@
+class ReactorCalculator {
+  constructor(public width: number, public height: number, public length: number) {}
+
+  calculateResources(): void {
+    const controlRodBlocks = this.calculateControlRodBlocks();
+    const casingBlocks = this.calculateCasingBlocks();
+    const fuelAssemblyBlocks = this.calculateFuelAssemblyBlocks();
+    const reactorGlassBlocks = this.calculateReactorGlassBlocks();
+    const portBlocks = this.calculatePortBlocks();
+
+    console.log(`Required Resources for ${this.width}x${this.height}x${this.length} Reactor:`);
+    console.log(`Control Rod Assembly: ${controlRodBlocks} blocks`);
+    console.log(`Fission Reactor Casing: ${casingBlocks} blocks`);
+    console.log(`Fission Fuel Assembly: ${fuelAssemblyBlocks} blocks`);
+    console.log(`Reactor Glass: ${reactorGlassBlocks} blocks`);
+    console.log(`Fission Reactor Port: ${portBlocks} blocks`);
+  }
+
+  calculateControlRodBlocks(): number {
+    const numRows = this.width-2;
+    const numCols = this.length-2;
+    return Math.ceil(numRows * numCols / 2);
+  }
+
+  calculateCasingBlocks(): number {
+    const bottomArea = this.width * this.length;
+    const pillars = 4 * (this.height - 2);
+    return bottomArea*2 + pillars;
+  }
+
+  calculateFuelAssemblyBlocks(): number {
+    return this.calculateControlRodBlocks() * (this.height - 3);
+  }
+  
+    calculatePortBlocks(): number {
+    return Math.min(this.width, this.height, this.length);
+  }
+
+  calculateReactorGlassBlocks(): number {
+    return 4 * ((this.width-2) * (this.length-2)) - this.calculatePortBlocks();
+  }
+}
+
+const width = 18;
+const height = 18;
+const length = 18;
+
+const reactorCalculator = new ReactorCalculator(width, height, length);
+reactorCalculator.calculateResources();

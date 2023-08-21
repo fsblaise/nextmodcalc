@@ -39,7 +39,7 @@ const DarkSwitch = ({ start, end }: Props) => {
           onChange={toggleChange}
           defaultSelected={themeToggle}
           size="lg"
-          color="success"
+          color="secondary"
           startContent={start}
           endContent={end}
         />
