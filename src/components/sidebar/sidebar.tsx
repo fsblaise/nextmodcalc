@@ -13,11 +13,10 @@ export default function Sidebar() {
           as={NextLink}
           href="/mekanism"
           color="foreground"
-          isBlock
           className={`${
             pathname === "/mekanism" &&
-            "bg-white dark:bg-neutral-800 rounded-l-xl shadow-[0 1px 2px 0 rgb(0 0 0 / 0.05)] text-secondary"
-          } w-full h-10 pl-4 font-bold`}
+            "bg-white dark:bg-neutral-800 shadow-[0 1px 2px 0 rgb(0 0 0 / 0.05)] text-secondary"
+          } w-full h-10 pl-4 font-bold hover:rounded-l-xl hover:bg-foreground/10 hover:opacity-100`}
         >
           Welcome
         </Link>
@@ -28,11 +27,10 @@ export default function Sidebar() {
           as={NextLink}
           href="/mekanism/fission"
           color="foreground"
-          isBlock
           className={`${
             pathname === "/mekanism/fission" &&
             "bg-white dark:bg-neutral-800 rounded-l-xl shadow-[0 1px 2px 0 rgb(0 0 0 / 0.05)] text-secondary"
-          } w-full h-10 pl-4 font-bold`}
+          } w-full h-10 pl-4 font-bold hover:rounded-l-xl hover:bg-foreground/10 hover:opacity-100`}
         >
           Fission reactor
         </Link>
@@ -40,11 +38,10 @@ export default function Sidebar() {
           as={NextLink}
           href="/mekanism/fission"
           color="foreground"
-          isBlock
           className={`${
             pathname === "" &&
             "bg-white dark:bg-neutral-800 rounded-l-xl shadow-[0 1px 2px 0 rgb(0 0 0 / 0.05)] text-secondary"
-          } w-full h-10 pl-4 font-bold`}
+          } w-full h-10 pl-4 font-bold hover:rounded-l-xl hover:bg-foreground/10 hover:opacity-100`}
         >
           Fusion reactor
         </Link>
@@ -52,11 +49,10 @@ export default function Sidebar() {
           as={NextLink}
           href="/mekanism/fission"
           color="foreground"
-          isBlock
           className={`${
             pathname === "" &&
             "bg-white dark:bg-neutral-800 rounded-l-xl shadow-[0 1px 2px 0 rgb(0 0 0 / 0.05)] text-secondary"
-          } w-full h-10 pl-4 font-bold`}
+          } w-full h-10 pl-4 font-bold hover:rounded-l-xl hover:bg-foreground/10 hover:opacity-100`}
         >
           Boiler
         </Link>
@@ -64,11 +60,10 @@ export default function Sidebar() {
           as={NextLink}
           href="/mekanism/fission"
           color="foreground"
-          isBlock
           className={`${
             pathname === "" &&
             "bg-white dark:bg-neutral-800 rounded-l-xl shadow-[0 1px 2px 0 rgb(0 0 0 / 0.05)] text-secondary"
-          } w-full h-10 pl-4 font-bold`}
+          } w-full h-10 pl-4 font-bold hover:rounded-l-xl hover:bg-foreground/10 hover:opacity-100`}
         >
           Turbine
         </Link>
