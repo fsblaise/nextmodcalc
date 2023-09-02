@@ -1,8 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { Providers } from './providers';
+import { DesignContextProvider } from '../contexts/design.context';
 import Header from '@/components/header/header';
+import { AuthContextProvider } from '@/contexts/auth.context';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,12 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-        <Providers>
-          <div className='min-h-screen flex flex-wrap flex-col'>
-            <Header></Header>
-            {children}
-          </div>
-        </Providers>
+        <DesignContextProvider>
+          <AuthContextProvider>
+            <div className='min-h-screen flex flex-wrap flex-col'>
+              <Header></Header>
+              {children}
+            </div>
+          </AuthContextProvider>
+        </DesignContextProvider>
       </body>
     </html>
   )

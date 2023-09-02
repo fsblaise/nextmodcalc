@@ -6,11 +6,11 @@ import {
 } from "@nextui-org/navbar";
 import { Link } from "@nextui-org/link";
 import NextLink from "next/link";
-import { Button } from "@nextui-org/button";
-import React, { useState } from "react";
-import DarkSwitch from "../darkSwitch/darkSwitch";
+import React from "react";
+import DarkSwitch from "./darkSwitch/darkSwitch";
 import { Moon } from "../../../public/moon";
 import { Sun } from "../../../public/sun";
+import UserSegment from "./userSegment/userSegment";
 
 const Header = () => {
 
@@ -51,27 +51,7 @@ const Header = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <DarkSwitch start={<Sun />} end={<Moon />} />
-        <NavbarItem className="hidden lg:flex">
-          <Link
-            color="foreground"
-            className="hover:text-[var(--primary)]"
-            href="/login"
-            as={NextLink}
-          >
-            Login
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button
-            as={NextLink}
-            color="secondary"
-            href="/register"
-            variant="flat"
-            className="hover:text-[var(--primary)]"
-          >
-            Sign Up
-          </Button>
-        </NavbarItem>
+        <UserSegment></UserSegment>
       </NavbarContent>
     </Navbar>
   );

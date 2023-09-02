@@ -3,7 +3,7 @@
 import { NextUIProvider } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function DesignContextProvider({ children }: { children: React.ReactNode }) {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
