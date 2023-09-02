@@ -4,8 +4,8 @@ import * as fba from "firebase/auth"
 import { User, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateCurrentUser, updateProfile } from 'firebase/auth';
 import { doc, getDoc } from "firebase/firestore";
 
-export function logIn(email: string, password: string) {
-    signInWithEmailAndPassword(auth, email, password);
+export async function logIn(email: string, password: string) {
+    return await signInWithEmailAndPassword(auth, email, password);
 }
 
 export async function logOut() {
@@ -13,7 +13,12 @@ export async function logOut() {
 }
 
 export async function createUser(email: string, password: string) {
-    return await createUserWithEmailAndPassword(auth, email, password);
+    try {
+        return await createUserWithEmailAndPassword(auth, email, password);
+    } catch {
+        return 'error';
+    }
+    
 }
 
 export async function updateUser(props: any) {
