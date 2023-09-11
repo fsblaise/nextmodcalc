@@ -16,26 +16,31 @@ import { Avatar } from "@nextui-org/avatar";
 import { getById, logOut } from "@/hooks/authService";
 import { User } from "@nextui-org/user";
 import { CircularProgress } from "@nextui-org/progress";
+import { useRouter } from "next/navigation";
 
 export default function UserSegment() {
   const { user, displayName, profileUrl, loading } = UserAuth();
+  const shortName = displayName.substring(0,2);
+  const router = useRouter();
+
+  const navigateToProfile = () => {router.push('/profile')};
 
   if (!loading && user) {
     return (
       <NavbarItem className="hidden lg:flex">
         <Dropdown>
           <DropdownTrigger>
-            <Avatar name={displayName.substring(0,2)} className="cursor-pointer hover:opacity-80"></Avatar>
+            <Avatar name={shortName} className="cursor-pointer hover:opacity-80"></Avatar>
           </DropdownTrigger>
           <DropdownMenu aria-label="Static Actions">
             <DropdownSection showDivider>
-              <DropdownItem>
+              <DropdownItem onClick={navigateToProfile} description="My Profile">
                 <User
                   name={displayName}
                   description={user.email}
                   avatarProps={{
                     src: profileUrl,
-                    name: displayName.substring(0,2)
+                    name: shortName
                   }}
                 />
               </DropdownItem>

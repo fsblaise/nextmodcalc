@@ -5,13 +5,27 @@ import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import { logIn } from "@/hooks/authService";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const submit = (e: any) => {
+    setLoading(true);
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const userData = Object.fromEntries(formData.entries());
+    logIn(userData.name as string, userData.password as string).finally(() => {
+      setLoading(false);
+      router.back();
+    });
+  }
 
   return (
     <div className="w-full flex-grow-[100] flex justify-center items-center">
-      <form method="post" onSubmit={(e) => submit(e,setLoading)}>
+      <form method="post" onSubmit={submit}>
         <Card className="h-[320px] w-[350px]">
           <CardHeader className="justify-center font-bold text-secondary text-2xl">
             Login
@@ -46,15 +60,4 @@ export default function Login() {
       </form>
     </div>
   );
-}
-
-export async function submit(e: any, setLoading: any) {
-  setLoading(true);
-  e.preventDefault();
-  const form = e.target;
-  const formData = new FormData(form);
-  const userData = Object.fromEntries(formData.entries());
-  logIn(userData.name as string, userData.password as string).finally(() => {
-    setLoading(false);
-  });
 }

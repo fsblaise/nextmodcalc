@@ -15,14 +15,14 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
 
     useEffect(() => {
         const unsubscribe = onIdTokenChanged(auth, (currentUser) => {
-            console.log(currentUser?.displayName);
+            console.log(currentUser);
             setUser(currentUser);
             setDisplayName(currentUser?.displayName || '');
             setProfileUrl(currentUser?.photoURL || '');
             setLoading(false);
         });
         return () => unsubscribe();
-    }, [user]);
+    }, []);
     
     return (
         <AuthContext.Provider value={{user, displayName, profileUrl, loading}}>{children}</AuthContext.Provider>
