@@ -50,7 +50,7 @@ export default function UserSegment() {
             <DropdownItem
               className="text-danger"
               color="danger"
-              onClick={logout}
+              onClick={() => {logout(router)}}
             >
               Logout
             </DropdownItem>
@@ -95,6 +95,7 @@ export default function UserSegment() {
   }
 }
 
-async function logout() {
+async function logout(router: any) {
   console.log(await logOut());
+  router.back();
 }

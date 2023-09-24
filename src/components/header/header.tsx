@@ -37,7 +37,7 @@ const Header = () => {
             Mekanism
           </Link>
         </NavbarItem>
-        <NavbarItem isActive>
+        {/* <NavbarItem isActive>
           <Link
             color="foreground"
             className="hover:text-[var(--primary)]"
@@ -47,7 +47,7 @@ const Header = () => {
           >
             Page 3
           </Link>
-        </NavbarItem>
+        </NavbarItem> */}
       </NavbarContent>
       <NavbarContent justify="end">
         <DarkSwitch start={<Sun />} end={<Moon />} />
