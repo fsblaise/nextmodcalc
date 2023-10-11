@@ -26,14 +26,14 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className}`}>
-        <DesignContextProvider>
-          <AuthContextProvider>
+        <AuthContextProvider>
+          <DesignContextProvider>
             <div className="min-h-screen flex flex-wrap flex-col">
               <Header></Header>
               {children}
             </div>
-          </AuthContextProvider>
-        </DesignContextProvider>
+          </DesignContextProvider>
+        </AuthContextProvider>
       </body>
     </html>
   );

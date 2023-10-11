@@ -1,7 +1,8 @@
 "use client";
 
 import { UserAuth } from "@/contexts/auth.context";
-import { getById, uploadProfilePicture } from "@/hooks/authService";
+import { getById, update, uploadProfilePicture } from "@/hooks/authService";
+import { fbUser } from "@/models/user.model";
 import { Button } from "@nextui-org/button";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
@@ -11,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Profile() {
   const { user } = UserAuth();
-  const [userObj, setUserObj] = useState({ photoUrl: "" } as any);
+  const [userObj, setUserObj] = useState({ photoUrl: "" } as fbUser);
   let fileInputRef: any;
 
   useEffect(() => {
