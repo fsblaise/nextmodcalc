@@ -22,7 +22,6 @@ type Props = {
 };
 
 export default function CustomDropdown({ darkSwitch }: Props) {
-  const { user, loading } = UserAuth();
 
   return (
     <Dropdown>
@@ -37,28 +36,6 @@ export default function CustomDropdown({ darkSwitch }: Props) {
             <div className="flex justify-between items-center text-base">
               Darkmode{darkSwitch}
             </div>
-          </DropdownItem>
-        </DropdownSection>
-        <DropdownSection showDivider className={`${(user || loading) && 'hidden'}`}>
-          <DropdownItem>
-            <Link
-              color="foreground"
-              className="hover:text-[var(--primary)]"
-              href="/login"
-              as={NextLink}
-            >
-              Login
-            </Link>
-          </DropdownItem>
-          <DropdownItem>
-            <Link
-              color="foreground"
-              as={NextLink}
-              href="/register"
-              className="hover:text-[var(--primary)]"
-            >
-              Sign Up
-            </Link>
           </DropdownItem>
         </DropdownSection>
         <DropdownSection title="Pages">

@@ -2,13 +2,17 @@
 import React, { useEffect, useState } from "react";
 import { Switch } from "@nextui-org/switch";
 import { NavbarItem } from "@nextui-org/navbar";
+import { UserAuth } from "@/contexts/auth.context";
+import { updateDarkMode } from "@/hooks/authService";
 
 type Props = {
   start: React.ReactNode;
   end: React.ReactNode;
+  smallScreen: boolean
 };
 
-const DarkSwitch = ({ start, end }: Props) => {
+const DarkSwitch = ({ start, end, smallScreen }: Props) => {
+  const { userData } = UserAuth();
   const [themeToggle, setThemeToggle] = useState(false);
   const [init, setInit] = useState(false);
 
@@ -19,6 +23,9 @@ const DarkSwitch = ({ start, end }: Props) => {
   const toggleChange = async (ev: any) => {
     toggleDarkTheme(ev.target.checked);
     await localStorage.setItem("dark-mode", ev.target.checked);
+    if (userData.preferences.syncDarkMode) {
+      await updateDarkMode(ev.target.checked, userData.id);
+    }
   };
 
   const initializeDarkTheme = async () => {
@@ -33,7 +40,7 @@ const DarkSwitch = ({ start, end }: Props) => {
   }, []);
 
   return (
-    <NavbarItem>
+    <NavbarItem className={smallScreen ? 'sm:hidden flex' : 'hidden sm:flex'}>
       {init && (
         <Switch
           onChange={toggleChange}

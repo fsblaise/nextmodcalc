@@ -47,7 +47,13 @@ export default function Profile() {
     const form = event.target;
     const formData = new FormData(form);
     const userData = Object.fromEntries(formData.entries());
+    userObj.displayName = userData.displayName as string;
+    userObj.preferences.syncDarkMode = userData.sync ? true : false;
+    const darkmode = await localStorage.getItem("dark-mode");
+    userObj.preferences.darkMode = userData.sync ? darkmode === "true" : null;
     console.log(userData);
+    await update(userObj);
+    setUserObj(userObj);
   }
 
   return (
@@ -110,15 +116,16 @@ export default function Profile() {
                 name="email"
                 label="Email Address"
                 isReadOnly
+                disabled
                 labelPlacement="outside-left"
                 variant="bordered"
                 value={user.email}
               />
               <div className="flex items-center gap-[8px]">
                 <label className="block text-small font-medium text-foreground">
-                  Synchronise dark mode preference
+                  Synchronize dark mode preference
                 </label>
-                <Switch name="sync" value="sync"></Switch>
+                <Switch name="sync" value="sync" isSelected={userObj && userObj.preferences && userObj.preferences.syncDarkMode && (userObj.preferences.darkMode as boolean)}></Switch>
               </div>
             </CardBody>
             <CardFooter>

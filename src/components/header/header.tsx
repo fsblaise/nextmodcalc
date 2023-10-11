@@ -11,9 +11,16 @@ import DarkSwitch from "./darkSwitch/darkSwitch";
 import { Moon } from "../../../public/moon";
 import { Sun } from "../../../public/sun";
 import UserSegment from "./userSegment/userSegment";
+import { HamburgerIcon } from "../../../public/hamburger";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/dropdown";
+import CustomDropdown from "./dropdown/dropdown";
 
 const Header = () => {
-
   return (
     <Navbar className="w-full border-b-1 bg-transparent" isBordered>
       <NavbarBrand>
@@ -50,7 +57,12 @@ const Header = () => {
         </NavbarItem> */}
       </NavbarContent>
       <NavbarContent justify="end">
-        <DarkSwitch start={<Sun />} end={<Moon />} />
+        <NavbarItem className="flex sm:hidden">
+          <CustomDropdown
+            darkSwitch={<DarkSwitch start={<Sun />} end={<Moon />} smallScreen={true} />}
+          ></CustomDropdown>
+        </NavbarItem>
+        <DarkSwitch start={<Sun />} end={<Moon />} smallScreen={false} />
         <UserSegment></UserSegment>
       </NavbarContent>
     </Navbar>

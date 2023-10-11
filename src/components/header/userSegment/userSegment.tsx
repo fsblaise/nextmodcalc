@@ -27,10 +27,10 @@ export default function UserSegment() {
 
   if (!loading && user) {
     return (
-      <NavbarItem className="hidden lg:flex">
+      <NavbarItem className="flex">
         <Dropdown>
           <DropdownTrigger>
-            <Avatar name={shortName} className="cursor-pointer hover:opacity-80"></Avatar>
+            <Avatar src={profileUrl} name={shortName} className="cursor-pointer hover:opacity-80"></Avatar>
           </DropdownTrigger>
           <DropdownMenu aria-label="Static Actions">
             <DropdownSection showDivider>
@@ -45,8 +45,6 @@ export default function UserSegment() {
                 />
               </DropdownItem>
             </DropdownSection>
-            <DropdownItem>Copy link</DropdownItem>
-            <DropdownItem>Edit file</DropdownItem>
             <DropdownItem
               className="text-danger"
               color="danger"
@@ -61,7 +59,7 @@ export default function UserSegment() {
   } else if(!loading) {
     return (
       <>
-        <NavbarItem className="hidden lg:flex">
+        <NavbarItem className="hidden sm:flex">
           <Link
             color="foreground"
             className="hover:text-[var(--primary)]"
@@ -71,7 +69,7 @@ export default function UserSegment() {
             Login
           </Link>
         </NavbarItem>
-        <NavbarItem>
+        <NavbarItem className="hidden sm:flex">
           <Button
             as={NextLink}
             color="secondary"
