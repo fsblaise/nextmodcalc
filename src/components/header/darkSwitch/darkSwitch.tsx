@@ -8,7 +8,7 @@ import { updateDarkMode } from "@/hooks/authService";
 type Props = {
   start: React.ReactNode;
   end: React.ReactNode;
-  smallScreen: boolean
+  smallScreen: boolean;
 };
 
 const DarkSwitch = ({ start, end, smallScreen }: Props) => {
@@ -29,18 +29,23 @@ const DarkSwitch = ({ start, end, smallScreen }: Props) => {
   };
 
   const initializeDarkTheme = async () => {
-    const storedDarkMode = document.body.classList.contains('dark');
+    let storedDarkMode = document.body.classList.contains("dark");
+    if (userData.preferences.syncDarkMode) {
+      storedDarkMode = userData.preferences.darkMode;
+    }
     setThemeToggle(storedDarkMode);
     toggleDarkTheme(storedDarkMode);
   };
 
   useEffect(() => {
-    initializeDarkTheme();
-    setInit(true);
-  }, []);
+    if (userData) {
+      initializeDarkTheme();
+      setInit(true);
+    }
+  }, [userData]);
 
   return (
-    <NavbarItem className={smallScreen ? 'sm:hidden flex' : 'hidden sm:flex'}>
+    <NavbarItem className={smallScreen ? "sm:hidden flex" : "hidden sm:flex"}>
       {init && (
         <Switch
           onChange={toggleChange}
