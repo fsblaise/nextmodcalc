@@ -17,8 +17,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground: #DFE0DF;
-    --background-start: #424646;
-    --background-end: #1a1c1d;
+    --background-start: #2a2b2c; /* Slightly lighter shade */
+    --background-end: #1a1c1d; /* Darker shade */
     --primary: #FDBA74;
     --secondary: #00B0A6;
     --tertiary: #AB7BE7;
@@ -30,8 +30,8 @@
 
 :root .dark {
   --foreground: #DFE0DF;
-  --background-start: #202223;
-  --background-end: #1a1c1d;
+  --background-start: #2a2b2c; /* Slightly lighter shade */
+  --background-end: #1a1c1d; /* Darker shade */
   --primary: #FDBA74;
   --secondary: #00B0A6;
   --tertiary: #AB7BE7;
@@ -44,11 +44,9 @@ body {
   color: var(--foreground);
   background: linear-gradient(
       to bottom,
-      transparent,
+      var(--background-start),
       var(--background-end)
-    )
-    var(--background-start);
-
+    );
 }
 
 #__next {

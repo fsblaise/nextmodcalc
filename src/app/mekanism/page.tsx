@@ -6,7 +6,7 @@ import mekanismPng from '../../../public/mekanism.png'
 export default function Mekanism() {
   return (
     <div className="max-w-[600px] flex-grow-[100] overflow-auto text-center mx-auto">
-      <h1 className="text-2xl mb-8">Welcome to Mekanism</h1>
+      <h1 className="text-2xl mb-8 font-bold">Welcome to Mekanism</h1>
       <p>
         In this section you will find different calculators for multi-block
         structures from Mekanism.

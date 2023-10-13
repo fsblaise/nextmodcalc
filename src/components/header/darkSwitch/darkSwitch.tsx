@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Switch } from "@nextui-org/switch";
+import { cn } from "@nextui-org/react";
 import { NavbarItem } from "@nextui-org/navbar";
 import { UserAuth } from "@/contexts/auth.context";
 import { updateDarkMode } from "@/hooks/authService";
@@ -51,7 +52,9 @@ const DarkSwitch = ({ start, end, smallScreen }: Props) => {
           onChange={toggleChange}
           defaultSelected={themeToggle}
           size="lg"
-          color="secondary"
+          color="primary"
+          className="cursor-pointer hover:opacity-80"
+          classNames={{wrapper: cn("bg-secondary")}}
           startContent={start}
           endContent={end}
         />

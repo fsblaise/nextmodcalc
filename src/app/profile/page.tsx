@@ -6,7 +6,8 @@ import { fbUser } from "@/models/user.model";
 import { Button } from "@nextui-org/button";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
-import { Switch } from "@nextui-org/react";
+import { Spinner } from "@nextui-org/spinner";
+import { Switch } from "@nextui-org/switch";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -64,6 +65,7 @@ export default function Profile() {
             <Image
               src={userObj.photoUrl}
               alt="Profile picture"
+              unoptimized
               width={200}
               height={200}
               className="absolute z-10 w-[200px] h-[200px] hover:opacity-30 hover:z-0 hover:cursor-pointer rounded-xl"
@@ -100,7 +102,7 @@ export default function Profile() {
       </Card>
       <Card className="w-[500px]">
         <CardHeader className="text-xl">My Profile</CardHeader>
-        {user && (
+        {user && userObj && userObj.preferences ? (
           <form method="post" onSubmit={submit}>
             <CardBody className="gap-5">
               <Input
@@ -125,7 +127,11 @@ export default function Profile() {
                 <label className="block text-small font-medium text-foreground">
                   Synchronize dark mode preference
                 </label>
-                <Switch name="sync" value="sync" isSelected={userObj && userObj.preferences && userObj.preferences.syncDarkMode && (userObj.preferences.darkMode as boolean)}></Switch>
+                <Switch
+                  name="sync"
+                  value="sync"
+                  defaultSelected={userObj.preferences.syncDarkMode}
+                ></Switch>
               </div>
             </CardBody>
             <CardFooter>
@@ -138,6 +144,13 @@ export default function Profile() {
               </Button>
             </CardFooter>
           </form>
+        ) : (
+          <>
+            <CardBody className="gap-5">
+              <Spinner label="Loading..." color="warning" />
+            </CardBody>
+            <CardFooter></CardFooter>
+          </>
         )}
       </Card>
     </div>

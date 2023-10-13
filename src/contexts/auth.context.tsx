@@ -19,20 +19,28 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
     useEffect(() => {
         console.log('useEffect outside')
         const unsubscribe = onIdTokenChanged(auth, async (currentUser) => {
-            console.log('useeffect inside');
             setUser(currentUser);
             setDisplayName(currentUser?.displayName || '');
             setProfileUrl(currentUser?.photoURL || '');
+            setLoading(true); // Set loading to true when user changes
             if (currentUser) {
                 try {
-                    console.log('useeffect fetching');
-                    getById(currentUser.uid).then(data => setUserData(data));
+                    getById(currentUser.uid).then(data => {
+                        setUserData(data);
+                        setLoading(false); // Set loading to false after data is fetched
+                    }).catch(error => {
+                        console.error("Error fetching user data from Firestore:", error);
+                        setLoading(false); // Set loading to false in case of an error
+                    });
                 } catch (error) {
                     console.error("Error fetching user data from Firestore:", error);
+                    setLoading(false); // Set loading to false in case of an error
                 }
+            } else {
+                setLoading(false); // Set loading to false if no user is authenticated
             }
-            setLoading(false);
         });
+
         return () => unsubscribe();
     }, []);
     

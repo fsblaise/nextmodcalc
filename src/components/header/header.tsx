@@ -22,7 +22,7 @@ import CustomDropdown from "./dropdown/dropdown";
 
 const Header = () => {
   return (
-    <Navbar className="w-full border-b-1 bg-transparent" isBordered>
+    <Navbar className="w-full border-b-1" isBordered isBlurred={false}>
       <NavbarBrand>
         <Link color="foreground" href="/" as={NextLink} className="text-2xl">
           <span className="text-[var(--secondary)]">N</span>
