@@ -22,6 +22,7 @@ type Props = {
 };
 
 export default function CustomDropdown({ darkSwitch }: Props) {
+  const { user, loading } = UserAuth();
 
   return (
     <Dropdown>
@@ -30,27 +31,73 @@ export default function CustomDropdown({ darkSwitch }: Props) {
           <HamburgerIcon></HamburgerIcon>
         </Button>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Static Actions">
-        <DropdownSection showDivider>
-          <DropdownItem>
-            <div className="flex justify-between items-center text-base">
-              Darkmode{darkSwitch}
-            </div>
-          </DropdownItem>
-        </DropdownSection>
-        <DropdownSection title="Pages">
-          <DropdownItem>
-            <Link
-              color="foreground"
-              className="hover:text-[var(--primary)]"
-              href="/mekanism"
-              as={NextLink}
-            >
-              Mekanism
-            </Link>
-          </DropdownItem>
-        </DropdownSection>
-      </DropdownMenu>
+      {(!user || loading) ? (
+        <DropdownMenu aria-label="Static Actions">
+          <DropdownSection showDivider>
+            <DropdownItem>
+              <div className="flex justify-between items-center text-base">
+                Darkmode{darkSwitch}
+              </div>
+            </DropdownItem>
+          </DropdownSection>
+          <DropdownSection showDivider>
+            <DropdownItem>
+              <Link
+                color="foreground"
+                className="hover:text-[var(--primary)]"
+                href="/login"
+                as={NextLink}
+              >
+                Login
+              </Link>
+            </DropdownItem>
+            <DropdownItem>
+              <Link
+                color="foreground"
+                as={NextLink}
+                href="/register"
+                className="hover:text-[var(--primary)]"
+              >
+                Sign Up
+              </Link>
+            </DropdownItem>
+          </DropdownSection>
+          <DropdownSection title="Pages">
+            <DropdownItem>
+              <Link
+                color="foreground"
+                className="hover:text-[var(--primary)]"
+                href="/mekanism"
+                as={NextLink}
+              >
+                Mekanism
+              </Link>
+            </DropdownItem>
+          </DropdownSection>
+        </DropdownMenu>
+      ) : (
+        <DropdownMenu aria-label="Static Actions">
+          <DropdownSection showDivider>
+            <DropdownItem>
+              <div className="flex justify-between items-center text-base">
+                Darkmode{darkSwitch}
+              </div>
+            </DropdownItem>
+          </DropdownSection>
+          <DropdownSection title="Pages">
+            <DropdownItem>
+              <Link
+                color="foreground"
+                className="hover:text-[var(--primary)]"
+                href="/mekanism"
+                as={NextLink}
+              >
+                Mekanism
+              </Link>
+            </DropdownItem>
+          </DropdownSection>
+        </DropdownMenu>
+      )}
     </Dropdown>
   );
 }

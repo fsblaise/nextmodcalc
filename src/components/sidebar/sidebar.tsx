@@ -2,9 +2,10 @@
 import { Link } from "@nextui-org/link";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { Button } from "@nextui-org/button";
+import useWindowDimensions from "@/hooks/windowDimensions";
 
 type Prop = {
   classNames: string;
@@ -12,13 +13,42 @@ type Prop = {
 
 export default function Sidebar({ classNames }: Prop) {
   const pathname = usePathname();
-  const [showSidebar, setShowSidebar] = useState(false);
+  const { width } = useWindowDimensions();
+  const [showSidebar, setShowSidebar] = useState(true);
+  const prevSizeRef = useRef('big');
+
+  useEffect(() => {
+    if (width < 640 && prevSizeRef.current === 'big') {
+      setShowSidebar(false);
+      prevSizeRef.current = 'small';
+    } else if (width >= 640 && prevSizeRef.current === 'small') {
+      setShowSidebar(true);
+      prevSizeRef.current = 'big';
+    }
+  }, [width]);
+
   return (
     <>
-      <Button variant="light" onClick={() => {setShowSidebar(!showSidebar)}} className="absolute z-20 min-w-[40px] p-0 rounded-full sm:hidden">
-        asdasd
+      <Button
+        variant="light"
+        onClick={() => {
+          setShowSidebar(!showSidebar);
+        }}
+        className="absolute z-10 min-w-[40px] p-0 rounded-full sm:hidden"
+      >
+        <span
+          className={`material-symbols-outlined transition-all duration-300 ease-in-out ${
+            showSidebar && "rotate-180"
+          }`}
+        >
+          arrow_forward_ios
+        </span>
       </Button>
-      <div className={`${classNames} ${showSidebar ? '' : ' hidden'} sm:flex z-10 sm:relative sm:z-0 bg-background sm:bg-inherit shadow-2xl sm:shadow-none sm:rounded-none rounded-r-2xl`}>
+      <div
+        className={`${classNames} ${
+          showSidebar ? "translate-x-0" : "-translate-x-full"
+        } transition-all ease-in-out duration-300 sm:flex z-10 sm:relative sm:z-0 bg-background sm:bg-inherit shadow-2xl sm:shadow-none sm:rounded-none rounded-r-2xl`}
+      >
         <div className="border-b-1 pb-4">
           <Link
             as={NextLink}

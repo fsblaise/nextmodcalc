@@ -3,7 +3,7 @@ import Sidebar from "@/components/sidebar/sidebar";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex-grow-[100] flex h-[calc(100vh-65px)]">
-      <div className="fixed top-0 left-0 z-40 h-screen pt-[66px] w-[200px]">
+      <div className="absolute top-0 left-0 z-20 h-screen pt-[66px] w-[200px]">
         <Sidebar classNames="min-h-full flex flex-col pt-10 gap-2"></Sidebar>
       </div>
       <div

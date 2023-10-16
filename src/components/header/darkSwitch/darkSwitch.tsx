@@ -13,7 +13,7 @@ type Props = {
 };
 
 const DarkSwitch = ({ start, end, smallScreen }: Props) => {
-  const { userData } = UserAuth();
+  const { userData, loading } = UserAuth();
   const [themeToggle, setThemeToggle] = useState(false);
   const [init, setInit] = useState(false);
 
@@ -24,14 +24,14 @@ const DarkSwitch = ({ start, end, smallScreen }: Props) => {
   const toggleChange = async (ev: any) => {
     toggleDarkTheme(ev.target.checked);
     await localStorage.setItem("dark-mode", ev.target.checked);
-    if (userData.preferences.syncDarkMode) {
+    if (userData && userData.preferences.syncDarkMode) {
       await updateDarkMode(ev.target.checked, userData.id);
     }
   };
 
   const initializeDarkTheme = async () => {
     let storedDarkMode = document.body.classList.contains("dark");
-    if (userData.preferences.syncDarkMode) {
+    if (userData && userData.preferences.syncDarkMode) {
       storedDarkMode = userData.preferences.darkMode;
     }
     setThemeToggle(storedDarkMode);
@@ -39,14 +39,14 @@ const DarkSwitch = ({ start, end, smallScreen }: Props) => {
   };
 
   useEffect(() => {
-    if (userData) {
+    if (!loading) {
       initializeDarkTheme();
       setInit(true);
     }
-  }, [userData]);
+  }, [loading]);
 
   return (
-    <NavbarItem className={smallScreen ? "sm:hidden flex" : "hidden sm:flex"}>
+    <>
       {init && (
         <Switch
           onChange={toggleChange}
@@ -59,7 +59,7 @@ const DarkSwitch = ({ start, end, smallScreen }: Props) => {
           endContent={end}
         />
       )}
-    </NavbarItem>
+    </>
   );
 };
 

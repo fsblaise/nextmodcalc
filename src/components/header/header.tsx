@@ -60,9 +60,10 @@ const Header = () => {
         <NavbarItem className="flex sm:hidden">
           <CustomDropdown
             darkSwitch={<DarkSwitch start={<Sun />} end={<Moon />} smallScreen={true} />}
+            small={true}
           ></CustomDropdown>
         </NavbarItem>
-        <DarkSwitch start={<Sun />} end={<Moon />} smallScreen={false} />
+        <NavbarItem className="hidden sm:flex"><DarkSwitch start={<Sun />} end={<Moon />} smallScreen={false} /></NavbarItem>
         <UserSegment></UserSegment>
       </NavbarContent>
     </Navbar>
